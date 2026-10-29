@@ -1,0 +1,1093 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Who Feeds Vadodara's Birds? | TERRANOVA</title>
+<style>
+:root {
+  --ink: #122921;
+  --muted: #587065;
+  --paper: #f4f7f2;
+  --card: #ffffff;
+  --card-border: #dbe4d8;
+  --green: #1f593f;
+  --green-light: #e8f3ec;
+  --lime: #ccf085;
+  --red: #c0392b;
+  --red-light: #fbebe9;
+  --gold: #d9822b;
+  --gold-light: #fef7ed;
+  --shadow-sm: 0 4px 12px rgba(18, 41, 33, 0.05);
+  --shadow-lg: 0 16px 36px rgba(18, 41, 33, 0.08);
+  --radius: 18px;
+  --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+button, select { font: inherit; }
+button { cursor: pointer; border: none; outline: none; }
+
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 20px 40px;
+}
+
+/* Header & Topbar */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.brandmark {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: var(--green);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  box-shadow: 0 6px 16px rgba(31, 89, 63, 0.25);
+}
+.brand-title { font-size: 1.1rem; line-height: 1.1; }
+.brand-sub { font-size: 0.76rem; color: var(--muted); font-weight: 600; }
+.tag-authors {
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--card);
+  box-shadow: var(--shadow-sm);
+  text-align: right;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(135deg, #184632 0%, #28664b 100%);
+  color: white;
+  border-radius: 28px;
+  padding: clamp(28px, 5vw, 52px);
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 32px;
+  align-items: center;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  right: -20%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(204,240,133,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--lime);
+  margin-bottom: 8px;
+}
+.hero h1 {
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin: 0 0 16px;
+  font-weight: 800;
+}
+.hero p {
+  max-width: 620px;
+  color: #e0eee4;
+  font-size: 1.05rem;
+  margin: 0;
+}
+.hero-art {
+  min-height: 220px;
+  display: grid;
+  place-items: center;
+  font-size: clamp(5rem, 10vw, 8rem);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  user-select: none;
+}
+.hero-stats {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+.stat {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  padding: 10px 16px;
+  min-width: 125px;
+}
+.stat strong { display: block; font-size: 1.4rem; font-weight: 800; }
+.stat span { font-size: 0.75rem; color: #d0e4d5; }
+
+/* Navigation Tabs */
+.nav {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 20px 0 10px;
+  margin-bottom: 10px;
+  scrollbar-width: none;
+}
+.nav::-webkit-scrollbar { display: none; }
+.nav button {
+  border: 1px solid var(--card-border);
+  background: var(--card);
+  border-radius: 999px;
+  padding: 12px 22px;
+  color: var(--muted);
+  white-space: nowrap;
+  font-weight: 700;
+  font-size: 0.9rem;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+.nav button:hover { color: var(--ink); border-color: #cbd8c8; }
+.nav button.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: white;
+  box-shadow: 0 6px 18px rgba(18, 41, 33, 0.2);
+}
+
+/* Panels */
+.panel { display: none; opacity: 0; transition: opacity 0.3s ease; }
+.panel.active { display: block; opacity: 1; }
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  margin: 24px 0 20px;
+}
+.section-head h2 {
+  font-size: clamp(1.5rem, 2.8vw, 2rem);
+  letter-spacing: -0.03em;
+  margin: 4px 0 0;
+  color: var(--ink);
+}
+.section-head p { margin: 4px 0 0; color: var(--muted); max-width: 650px; }
+
+/* Grid System */
+.grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+.card:hover { box-shadow: var(--shadow-lg); }
+
+.span-4 { grid-column: span 4; }
+.span-5 { grid-column: span 5; }
+.span-7 { grid-column: span 7; }
+.span-8 { grid-column: span 8; }
+.span-12 { grid-column: span 12; }
+
+.card h3 { margin: 0 0 10px; font-size: 1.15rem; font-weight: 750; }
+.muted { color: var(--muted); font-size: 0.9rem; }
+
+/* Form Fields & Controls */
+.field { display: grid; gap: 8px; margin: 16px 0; }
+.field label { font-size: 0.85rem; font-weight: 750; color: var(--ink); }
+.field select {
+  width: 100%;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 12px;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 0.95rem;
+  outline: none;
+  transition: var(--transition);
+}
+.field select:focus { border-color: var(--green); background: #fff; }
+
+/* Buttons */
+.btn {
+  border: 0;
+  background: var(--green);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 750;
+  font-size: 0.9rem;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn:hover { background: #16432f; transform: translateY(-1px); }
+.btn.secondary { background: var(--green-light); color: var(--green); border: 1px solid #cce2d4; }
+.btn.secondary:hover { background: #d8ebd3; }
+.btn.danger { background: var(--red-light); color: var(--red); border: 1px solid #f7c5c0; }
+.btn.danger:hover { background: #f8d7d3; }
+.btnrow { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+
+/* Bird Info Card */
+.bird-card {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  background: var(--paper);
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid var(--card-border);
+  margin-top: 12px;
+}
+.bird-icon {
+  width: 64px;
+  height: 64px;
+  flex: 0 0 64px;
+  border-radius: 16px;
+  background: #ffffff;
+  display: grid;
+  place-items: center;
+  font-size: 2.2rem;
+  box-shadow: var(--shadow-sm);
+}
+.sound-btn {
+  background: #ffffff;
+  border: 1px solid var(--card-border);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  font-size: 1rem;
+  margin-left: auto;
+  transition: var(--transition);
+}
+.sound-btn:hover { background: var(--lime); transform: scale(1.08); }
+
+/* Month Selector Grid */
+.month-strip {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 16px;
+}
+.month {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 10px 4px;
+  text-align: center;
+  background: white;
+  cursor: pointer;
+  font-weight: 800;
+  color: var(--ink);
+  transition: var(--transition);
+}
+.month small { display: block; font-weight: 500; color: var(--muted); font-size: 0.7rem; margin-top: 2px; }
+.month:hover { border-color: var(--green); }
+.month.selected { background: var(--green); color: white; border-color: var(--green); box-shadow: 0 4px 12px rgba(31,89,63,0.3); }
+.month.selected small { color: #d1ebd8; }
+.month.gap { border-color: #f7c5c0; background: #fef5f4; }
+.month.selected.gap { background: var(--red); border-color: var(--red); }
+
+/* Output & Notifications */
+.result {
+  border-radius: 14px;
+  padding: 16px;
+  margin-top: 16px;
+  background: var(--green-light);
+  border: 1px solid #c0dfc9;
+}
+.result.warning { background: var(--red-light); border-color: #f7c5c0; }
+.result strong { display: block; margin-bottom: 4px; color: var(--ink); }
+
+/* Tree & Item Lists */
+.tree-list { display: grid; gap: 10px; margin-top: 14px; }
+.tree-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  background: white;
+  transition: var(--transition);
+}
+.tree-row:hover { border-color: #cbd8c8; }
+.tree-name { font-weight: 750; display: block; font-size: 0.95rem; }
+.tree-row small { color: var(--muted); font-size: 0.8rem; }
+
+.pill {
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  background: var(--green-light);
+  color: var(--green);
+  white-space: nowrap;
+}
+.pill.off { background: var(--red-light); color: var(--red); }
+.pill.neutral { background: #eee; color: #666; }
+
+/* Progress Bars & KPI */
+.bar-wrap { height: 12px; background: #e2ebd9; border-radius: 999px; overflow: hidden; margin: 12px 0; }
+.bar { height: 100%; width: 75%; background: var(--red); border-radius: 999px; transition: width 0.4s ease; }
+.scoreline { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.score { font-size: 2.6rem; font-weight: 900; letter-spacing: -0.05em; }
+.score.good { color: var(--green); }
+.score.bad { color: var(--red); }
+
+.kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 16px; }
+.kpi { border: 1px solid var(--card-border); border-radius: 14px; padding: 12px; background: var(--paper); text-align: center; }
+.kpi strong { display: block; font-size: 1.5rem; color: var(--ink); }
+.kpi span { font-size: 0.75rem; color: var(--muted); font-weight: 600; }
+
+/* Timeline & Steps */
+.step-list { display: grid; gap: 14px; margin-top: 16px; }
+.step { display: flex; gap: 14px; align-items: flex-start; }
+.step-num {
+  background: var(--lime);
+  color: var(--ink);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 850;
+  flex: 0 0 32px;
+}
+.note {
+  font-size: 0.85rem;
+  color: var(--ink);
+  border-left: 4px solid var(--gold);
+  padding: 12px 14px;
+  background: var(--gold-light);
+  border-radius: 0 12px 12px 0;
+  margin-top: 16px;
+}
+.toast { margin-top: 12px; color: var(--green); font-weight: 750; font-size: 0.9rem; min-height: 1.4em; }
+
+/* Interactive Planner Dynamic Counter Controls */
+.tree-count-ctrl {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.tree-count-ctrl button {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--paper);
+  border: 1px solid var(--card-border);
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  transition: var(--transition);
+}
+.tree-count-ctrl button:hover { background: var(--green-light); border-color: var(--green); }
+
+/* Footer */
+.site-footer {
+  margin-top: 40px;
+  padding: 24px 12px;
+  text-align: center;
+  border-top: 1px solid var(--card-border);
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.site-footer a { color: var(--ink); font-weight: 700; text-decoration: none; }
+.site-footer a:hover { text-decoration: underline; color: var(--green); }
+
+/* Responsive adjustments */
+@media (max-width: 850px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-art { min-height: 140px; }
+  .span-4, .span-5, .span-7, .span-8 { grid-column: span 12; }
+  .month-strip { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .kpi-grid { grid-template-columns: 1fr; }
+  .topbar { align-items: flex-start; flex-direction: column; }
+}
+
+@media print {
+  body { background: white; }
+  .nav, .btnrow, button { display: none !important; }
+  .panel { display: block !important; opacity: 1 !important; margin-bottom: 24px; }
+  .hero { background: #fff; color: #122921; border: 1px solid #ccc; box-shadow: none; }
+  .hero p, .hero .eyebrow, .stat span { color: #444; }
+  .card { box-shadow: none; break-inside: avoid; border: 1px solid #ddd; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <!-- Header -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brandmark">🌿</div>
+      <div>
+        <div class="brand-title">TERRANOVA</div>
+        <div class="brand-sub">NIRMAAN 2026–27 · Urban Ecology Interactive Framework</div>
+      </div>
+    </div>
+    <div class="tag-authors">
+      <strong>Vansh K. Prajapati</strong> · <strong>Kaashvi P. Purani</strong>
+    </div>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Bio-Verse · Urban Biodiversity Study</div>
+      <h1>Who feeds<br>Vadodara’s birds?</h1>
+      <p>A city can have thousands of trees and still leave seasonal food gaps for birds. Explore the bird–tree ecosystem, simulate tree canopy changes, and dynamic habitat restoration scenarios.</p>
+      <div class="hero-stats">
+        <div class="stat"><strong id="heroMonthsCount">12</strong><span>Months trackable</span></div>
+        <div class="stat"><strong id="heroBirdCount">4</strong><span>Focus species</span></div>
+        <div class="stat"><strong id="heroScoreDisplay">36 → 9</strong><span>Hungry bird-months</span></div>
+      </div>
+    </div>
+    <div class="hero-art" id="heroEmoji" aria-label="Bird and tree illustration">🐦🌳</div>
+  </section>
+
+  <!-- Navigation Tabs -->
+  <nav class="nav" aria-label="Project sections">
+    <button class="active" data-tab="explore">1 · Explore Birds & Trees</button>
+    <button data-tab="experiment">2 · Tree Loss Experiment</button>
+    <button data-tab="planner">3 · Dynamic Planting Planner</button>
+    <button data-tab="about">4 · Methodology & Science</button>
+  </nav>
+
+  <main>
+    <!-- PANEL 1: EXPLORE -->
+    <section class="panel active" id="explore">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">01 · Discover</div>
+          <h2>Explore the Food Availability Calendar</h2>
+          <p>Choose a bird species and month to analyze food relationships across Vadodara's native flora.</p>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="card span-4">
+          <h3>Select Species</h3>
+          <div class="field">
+            <label for="birdSelect">Bird Species</label>
+            <select id="birdSelect">
+              <option value="hornbill">Indian Grey Hornbill · ધનેશ</option>
+              <option value="koel">Asian Koel · કોયલ</option>
+              <option value="barbet">Coppersmith Barbet · ટૂંકટૂંક</option>
+              <option value="sunbird">Purple Sunbird · શક્કરખોરો</option>
+            </select>
+          </div>
+          <div class="bird-card">
+            <div class="bird-icon" id="birdIcon">🐦</div>
+            <div>
+              <h3 id="birdName" style="margin: 0; font-size: 1.05rem;">Indian Grey Hornbill</h3>
+              <div class="muted" id="birdDiet">Fruit, especially wild figs</div>
+            </div>
+            <button class="sound-btn" id="playSoundBtn" title="Simulate Bird Call" aria-label="Listen to bird call">🔊</button>
+          </div>
+          <div class="note">
+            The project study covers 15 birds & 13 trees in Vadodara. This simulator models the core riverbank species set.
+          </div>
+        </div>
+
+        <div class="card span-8">
+          <div class="scoreline">
+            <div>
+              <h3 id="calendarTitle">Food Availability Matrix</h3>
+              <p class="muted" style="margin: 0;">Click any month below to inspect seasonal availability.</p>
+            </div>
+            <div class="pill" id="monthLabel" style="font-size: 0.9rem; padding: 6px 14px;">October</div>
+          </div>
+          <div class="month-strip" id="monthStrip"></div>
+          <div id="foodResult" class="result"></div>
+          
+          <h3 style="margin-top:22px;">Flora contributing in this month</h3>
+          <div class="tree-list" id="foodTrees"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PANEL 2: EXPERIMENT -->
+    <section class="panel" id="experiment">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">02 · Simulation</div>
+          <h2>What happens if cluster fig trees disappear?</h2>
+          <p>Umro (Cluster Fig / <i>Ficus racemosa</i>) is recognized as a keystone species supplying year-round figs.</p>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="card span-5">
+          <div style="font-size:3.5rem; text-align: center; margin-bottom: 12px;">🌳 → 🪵</div>
+          <h3>Simulate Umro Removal</h3>
+          <p class="muted">Toggle Cluster Fig removal to evaluate structural impact across species feeding calendars.</p>
+          <div class="btnrow">
+            <button class="btn danger" id="removeFig">Remove Umro Fig</button>
+            <button class="btn secondary" id="restoreFig">Restore Ecosystem</button>
+          </div>
+          <div class="toast" id="experimentStatus" aria-live="polite">Status: All tree species present.</div>
+          <div class="note">
+            Keystone removal illustrates ecological dependence modeled from field observations in Vadodara.
+          </div>
+        </div>
+        <div class="card span-7">
+          <h3>Impact on Focus Birds</h3>
+          <p class="muted">Highlights species experiencing food deficits following Umro canopy reduction.</p>
+          <div class="tree-list" id="experimentBirds"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PANEL 3: PLANNER -->
+    <section class="panel" id="planner">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">03 · Active Restoration</div>
+          <h2>Riverbank Dynamic Planting Planner</h2>
+          <p>Simulate urban canopy intervention by replacing invasive species with native bird-feeding trees.</p>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="card span-5">
+          <h3>Baseline Riverbank Survey</h3>
+          <p class="muted">Sample 100m Vishwamitri stretch baseline inventory:</p>
+          <div class="kpi-grid">
+            <div class="kpi"><strong>8</strong><span>Mesquite (Invasive)</span></div>
+            <div class="kpi"><strong>2</strong><span>Pongamia</span></div>
+            <div class="kpi"><strong>1</strong><span>Banyan</span></div>
+          </div>
+          <div class="scoreline" style="margin-top:24px;">
+            <span>Current Hungry Bird-Months</span>
+            <strong class="score bad" id="baselineScoreNum">36/48</strong>
+          </div>
+          <div class="bar-wrap"><div class="bar" id="baselineBar" style="width:75%"></div></div>
+          <p class="muted">Calculated gap total across 4 focus birds over 12 months.</p>
+        </div>
+
+        <div class="card span-7">
+          <h3>Native Planting Design Simulator</h3>
+          <p class="muted">Adjust native tree planting counts to calculate live impact on bird food gaps:</p>
+          <div class="tree-list" id="planControlsList">
+            <!-- Dynamic Controls populated by JS -->
+          </div>
+          <div class="scoreline" style="margin-top:22px;">
+            <span>Projected Hungry Bird-Months</span>
+            <strong class="score good" id="projectedScoreNum">9/48</strong>
+          </div>
+          <div class="bar-wrap"><div class="bar" id="projectedBar" style="width:18.75%; background:var(--green)"></div></div>
+          
+          <div class="result warning" id="sunbirdWarning">
+            <strong>Active Ecological Gap Identified:</strong> Sunbirds require additional flowering coverage (April–Dec). Recommend integrating native shrubs like <i>Adhatoda vasica</i> or <i>Lantana</i> alternatives.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PANEL 4: METHODOLOGY & ABOUT -->
+    <section class="panel" id="about">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">04 · Scientific Framework</div>
+          <h2>Methodology, Limitations & Action Steps</h2>
+          <p>Transparent ecological modeling translates raw data into structured urban biodiversity conservation.</p>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="card span-7">
+          <h3>Model Methodology</h3>
+          <div class="step-list">
+            <div class="step">
+              <div class="step-num">1</div>
+              <div>
+                <strong>Interaction Mapping</strong>
+                <div class="muted">Correlate bird species feeding habits with seasonal phenology (fruiting/flowering cycles) of native trees in Gujarat.</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">2</div>
+              <div>
+                <strong>Temporal Gap Analysis</strong>
+                <div class="muted">Evaluate month-by-month food availability matrices to isolate critical seasonal deficit periods.</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">3</div>
+              <div>
+                <strong>Restoration Simulation</strong>
+                <div class="muted">Model habitat scoring by comparing exotic/invasive dominance with native biodiversity replacement.</div>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-num">4</div>
+              <div>
+                <strong>Field Validation</strong>
+                <div class="muted">Cross-reference with local ornithological records and municipal planting initiatives in Vadodara.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card span-5">
+          <h3>Key Insights & Next Actions</h3>
+          <div class="result" style="margin-top:0;">
+            <strong>Quantified Impact</strong>
+            Native floral restoration achieves up to a 75% reduction in seasonal bird food deficits.
+          </div>
+          <div class="result warning">
+            <strong>Scope & Limitations</strong>
+            Calculations represent food-tree availability, not absolute bird population densities or nesting success.
+          </div>
+          <div class="result">
+            <strong>Proposed Pilot</strong>
+            Implement native riverbank planting along designated Vishwamitri corridors in partnership with VMC.
+          </div>
+          <div class="btnrow" style="margin-top:20px;">
+            <button class="btn secondary" id="printBtn">📄 Print / Export PDF Report</button>
+            <button class="btn" id="resetBtn">🔄 Reset Framework</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Who Feeds Vadodara’s Birds? · NIRMAAN 2026–27 Project Framework</p>
+    <a href="https://vanshprajapatiportfolio.netlify.app/" target="_blank" rel="noopener noreferrer">
+      © 2026 VPSS-Company, Co. or its affiliates. All rights reserved.
+    </a>
+  </footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  const months = [
+    "January", "February", "March", "April",
+    "May", "June", "July", "August",
+    "September", "October", "November", "December"
+  ];
+
+  const birds = {
+    hornbill: {
+      name: "Indian Grey Hornbill",
+      icon: "🐦",
+      diet: "Ficus fruits, figs, insects",
+      freq: 220,
+      food: ["Umro (Cluster Fig)", "Jamun", "Kadamb"]
+    },
+    koel: {
+      name: "Asian Koel",
+      icon: "🐦‍⬛",
+      diet: "Frugivorous: Figs, berries, Jamun",
+      freq: 440,
+      food: ["Umro (Cluster Fig)", "Jamun", "Kadamb"]
+    },
+    barbet: {
+      name: "Coppersmith Barbet",
+      icon: "🐤",
+      diet: "Figs, drupes, nectar",
+      freq: 350,
+      food: ["Umro (Cluster Fig)", "Jamun", "Kadamb"]
+    },
+    sunbird: {
+      name: "Purple Sunbird",
+      icon: "🌺",
+      diet: "Nectar, small insects",
+      freq: 580,
+      food: ["Indian Coral Tree", "Native Flowering Shrubs"]
+    }
+  };
+
+  const treeMonths = {
+    "Umro (Cluster Fig)": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+    "Jamun": [4, 5, 6],
+    "Kadamb": [8, 9, 10],
+    "Indian Coral Tree": [0, 1, 2],
+    "Native Flowering Shrubs": []
+  };
+
+  let plannerTrees = {
+    "Umro (Cluster Fig)": 2,
+    "Indian Coral Tree": 2,
+    "Kadamb": 2,
+    "Jamun": 2,
+    "Arjun": 2
+  };
+
+  const state = {
+    month: 9,
+    bird: "hornbill",
+    figPresent: true
+  };
+
+  const $ = id => document.getElementById(id);
+
+  /* Web Audio Synthesizer for Bird Calls */
+  function playBirdCall(type) {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      
+      osc.type = 'sine';
+      const freq = birds[type] ? birds[type].freq : 300;
+      
+      osc.frequency.setValueAtTime(freq, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(freq * 1.5, ctx.currentTime + 0.15);
+      osc.frequency.exponentialRampToValueAtTime(freq, ctx.currentTime + 0.3);
+
+      gain.gain.setValueAtTime(0.3, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.35);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start();
+      osc.stop(ctx.currentTime + 0.35);
+    } catch(e) {
+      console.log("Audio not supported or restricted.");
+    }
+  }
+
+  function isTreeAvailable(name, month) {
+    if (name === "Umro (Cluster Fig)" && !state.figPresent) return false;
+    return (treeMonths[name] || []).includes(month);
+  }
+
+  function hasFood(birdKey, month) {
+    const bird = birds[birdKey];
+    return bird.food.some(name => isTreeAvailable(name, month));
+  }
+
+  function drawMonths() {
+    const strip = $("monthStrip");
+    strip.replaceChildren();
+
+    months.forEach((month, index) => {
+      const fed = hasFood(state.bird, index);
+      const button = document.createElement("button");
+
+      button.type = "button";
+      button.className = "month" + (index === state.month ? " selected" : "") + (fed ? "" : " gap");
+
+      const monthName = document.createElement("span");
+      monthName.textContent = month.slice(0, 3);
+
+      const status = document.createElement("small");
+      status.textContent = fed ? "Food Available" : "Gap";
+
+      button.append(monthName, status);
+      button.setAttribute("aria-pressed", String(index === state.month));
+
+      button.addEventListener("click", () => {
+        state.month = index;
+        renderCalendar();
+      });
+
+      strip.appendChild(button);
+    });
+  }
+
+  function renderCalendar() {
+    const bird = birds[state.bird];
+    const month = state.month;
+    const fed = hasFood(state.bird, month);
+    const result = $("foodResult");
+
+    $("birdIcon").textContent = bird.icon;
+    $("birdName").textContent = bird.name;
+    $("birdDiet").textContent = bird.diet;
+    $("monthLabel").textContent = months[month];
+
+    drawMonths();
+
+    result.className = "result" + (fed ? "" : " warning");
+    result.replaceChildren();
+
+    const heading = document.createElement("strong");
+    heading.textContent = fed
+      ? `Food Available in ${months[month]}`
+      : `Seasonal Food Deficit in ${months[month]}`;
+
+    const description = document.createElement("p");
+    description.style.margin = "4px 0 0";
+    description.style.fontSize = "0.88rem";
+    description.textContent = fed
+      ? `Active food sources detected for the ${bird.name} in Vadodara's native flora matrix.`
+      : `No primary native food trees in fruit/bloom during this month for ${bird.name}.`;
+
+    result.append(heading, description);
+
+    const treeList = $("foodTrees");
+    treeList.replaceChildren();
+
+    bird.food.forEach(name => {
+      const available = isTreeAvailable(name, month);
+      const isProposed = name.includes("Shrubs");
+
+      const row = document.createElement("div");
+      row.className = "tree-row";
+
+      const info = document.createElement("div");
+      const title = document.createElement("span");
+      title.className = "tree-name";
+      title.textContent = name;
+
+      const note = document.createElement("small");
+      note.textContent = isProposed
+        ? "Proposed under habitat expansion plan"
+        : "Standard documented flora relationship";
+
+      info.append(title, note);
+
+      const pill = document.createElement("span");
+      pill.className = "pill" + (available ? "" : isProposed ? " neutral" : " off");
+      pill.textContent = isProposed ? "Proposed" : available ? "In Fruit / Bloom" : "Unavailable";
+
+      row.append(info, pill);
+      treeList.appendChild(row);
+    });
+  }
+
+  function renderExperiment() {
+    const list = $("experimentBirds");
+    list.replaceChildren();
+
+    Object.entries(birds).forEach(([key, bird]) => {
+      const affected = !state.figPresent && ["hornbill", "koel", "barbet"].includes(key);
+
+      const row = document.createElement("div");
+      row.className = "tree-row";
+
+      const info = document.createElement("div");
+      const title = document.createElement("span");
+      title.className = "tree-name";
+      title.textContent = `${bird.icon} ${bird.name}`;
+
+      const description = document.createElement("small");
+      description.textContent = affected
+        ? "Severe Deficit: Major food source removed"
+        : key === "sunbird"
+          ? "Unaffected by Ficus removal (Nectar feeder)"
+          : "Normal seasonal feeding pattern intact";
+
+      info.append(title, description);
+
+      const pill = document.createElement("span");
+      pill.className = "pill" + (affected ? " off" : "");
+      pill.textContent = affected ? "Food Deficit Risk" : "Stable";
+
+      row.append(info, pill);
+      list.appendChild(row);
+    });
+
+    $("experimentStatus").textContent = state.figPresent
+      ? "Status: All native species present."
+      : "Status: Umro Fig removed from ecosystem simulation.";
+
+    $("removeFig").disabled = !state.figPresent;
+    $("restoreFig").disabled = state.figPresent;
+    $("removeFig").style.opacity = state.figPresent ? "1" : "0.5";
+    $("restoreFig").style.opacity = state.figPresent ? "0.5" : "1";
+
+    renderCalendar();
+  }
+
+  function renderPlanner() {
+    const controlsContainer = $("planControlsList");
+    controlsContainer.replaceChildren();
+
+    const speciesMeta = {
+      "Umro (Cluster Fig)": "Fruit for Hornbill, Koel & Barbet",
+      "Indian Coral Tree": "Bloom nectar for Sunbirds (Jan-Mar)",
+      "Kadamb": "Fruit availability (Sep-Nov)",
+      "Jamun": "Frugivore nourishment (May-Jul)",
+      "Arjun": "Riverbank stabilization & nesting canopy"
+    };
+
+    Object.keys(plannerTrees).forEach(tree => {
+      const count = plannerTrees[tree];
+      const row = document.createElement("div");
+      row.className = "tree-row";
+
+      const info = document.createElement("div");
+      const nameSpan = document.createElement("span");
+      nameSpan.className = "tree-name";
+      nameSpan.textContent = tree;
+
+      const metaSpan = document.createElement("small");
+      metaSpan.textContent = speciesMeta[tree] || "Native species";
+
+      info.append(nameSpan, metaSpan);
+
+      const ctrl = document.createElement("div");
+      ctrl.className = "tree-count-ctrl";
+
+      const minusBtn = document.createElement("button");
+      minusBtn.textContent = "-";
+      minusBtn.onclick = () => {
+        if (plannerTrees[tree] > 0) {
+          plannerTrees[tree]--;
+          updatePlannerScores();
+          renderPlanner();
+        }
+      };
+
+      const countDisplay = document.createElement("span");
+      countDisplay.style.fontWeight = "800";
+      countDisplay.style.minWidth = "20px";
+      countDisplay.style.textAlign = "center";
+      countDisplay.textContent = count;
+
+      const plusBtn = document.createElement("button");
+      plusBtn.textContent = "+";
+      plusBtn.onclick = () => {
+        plannerTrees[tree]++;
+        updatePlannerScores();
+        renderPlanner();
+      };
+
+      ctrl.append(minusBtn, countDisplay, plusBtn);
+      row.append(info, ctrl);
+      controlsContainer.appendChild(row);
+    });
+
+    updatePlannerScores();
+  }
+
+  function updatePlannerScores() {
+    let hungryMonths = 0;
+    const totalPossible = 48; // 4 birds * 12 months
+
+    months.forEach((_, monthIndex) => {
+      Object.keys(birds).forEach(birdKey => {
+        let isFed = false;
+        if (birdKey === "sunbird") {
+          if (plannerTrees["Indian Coral Tree"] > 0 && [0, 1, 2].includes(monthIndex)) {
+            isFed = true;
+          }
+        } else {
+          if (plannerTrees["Umro (Cluster Fig)"] > 0) isFed = true;
+          if (plannerTrees["Jamun"] > 0 && [4, 5, 6].includes(monthIndex)) isFed = true;
+          if (plannerTrees["Kadamb"] > 0 && [8, 9, 10].includes(monthIndex)) isFed = true;
+        }
+
+        if (!isFed) hungryMonths++;
+      });
+    });
+
+    const numElem = $("projectedScoreNum");
+    const barElem = $("projectedBar");
+
+    if (numElem && barElem) {
+      numElem.textContent = `${hungryMonths}/${totalPossible}`;
+      const percentage = Math.max(5, (hungryMonths / totalPossible) * 100);
+      barElem.style.width = `${percentage}%`;
+      
+      if (hungryMonths > 20) {
+        barElem.style.background = "var(--red)";
+        numElem.className = "score bad";
+      } else {
+        barElem.style.background = "var(--green)";
+        numElem.className = "score good";
+      }
+    }
+  }
+
+  // Navigation Logic
+  document.querySelectorAll("[data-tab]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll("[data-tab]").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
+      
+      btn.classList.add("active");
+      const targetPanel = $(btn.dataset.tab);
+      if (targetPanel) targetPanel.classList.add("active");
+    });
+  });
+
+  // Event Listeners
+  $("birdSelect").addEventListener("change", (e) => {
+    state.bird = e.target.value;
+    renderCalendar();
+  });
+
+  $("playSoundBtn").addEventListener("click", () => {
+    playBirdCall(state.bird);
+  });
+
+  $("removeFig").addEventListener("click", () => {
+    state.figPresent = false;
+    renderExperiment();
+  });
+
+  $("restoreFig").addEventListener("click", () => {
+    state.figPresent = true;
+    renderExperiment();
+  });
+
+  $("printBtn").addEventListener("click", () => window.print());
+
+  $("resetBtn").addEventListener("click", () => {
+    state.month = 9;
+    state.bird = "hornbill";
+    state.figPresent = true;
+    plannerTrees = {
+      "Umro (Cluster Fig)": 2,
+      "Indian Coral Tree": 2,
+      "Kadamb": 2,
+      "Jamun": 2,
+      "Arjun": 2
+    };
+    $("birdSelect").value = "hornbill";
+    renderExperiment();
+    renderPlanner();
+    document.querySelector('[data-tab="explore"]').click();
+  });
+
+  // Initial Initialization
+  renderExperiment();
+  renderPlanner();
+})();
+</script>
+</body>
+</html>
